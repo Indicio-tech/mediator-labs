@@ -1,0 +1,29 @@
+# General
+label: Bob
+endpoint:
+    - http://localhost:3004
+    - ws://localhost:3004
+inbound-transport:
+  - [acapy_plugin_toolbox.http_ws, 0.0.0.0, 3004]
+outbound-transport: http
+no-ledger: true
+
+# Admin
+admin: [0.0.0.0, 3005]
+admin-insecure-mode: true
+
+# Connections
+debug-connections: true
+auto-accept-invites: true
+auto-accept-requests-peer: true
+connections-invite: true
+invite-label: Bob (Admin)
+invite-metadata-json: '{"group": "admin"}'
+
+# Plugins
+plugin:
+    #    - acapy_plugin_toolbox.basicmessage
+    #    - acapy_plugin_toolbox.connections
+    #    - acapy_plugin_toolbox.invitations
+    #    - acapy_plugin_toolbox.routing
+    - acapy_plugin_toolbox

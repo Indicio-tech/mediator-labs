@@ -1,0 +1,22 @@
+services:
+    alice:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3000:3000"
+            - "3001:3001"
+        command: start --arg-file configs/alice.yml -e http://host.docker.internal:3000 ws://host.docker.internal:3000
+    bob:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3004:3004"
+            - "3005:3005"
+        command: start --arg-file configs/bob.yml -e http://host.docker.internal:3004 ws://host.docker.internal:3004
+    mediator:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3002:3002"
+            - "3003:3003"
+        command: start --arg-file configs/mediator.yml -e http://host.docker.internal:3002 ws://host.docker.internal:3002

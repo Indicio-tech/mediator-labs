@@ -1,0 +1,25 @@
+services:
+    alice:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3000:3000"
+            - "3001:3001"
+        network_mode: host
+        command: start --arg-file configs/alice.yml
+    bob:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3004:3004"
+            - "3005:3005"
+        network_mode: host
+        command: start --arg-file configs/bob.yml
+    mediator:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3002:3002"
+            - "3003:3003"
+        network_mode: host
+        command: start --arg-file configs/mediator.yml

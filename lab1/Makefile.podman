@@ -1,0 +1,50 @@
+POD_NAME = "mediator-lab"
+IMAGE_NAME = "mediator-lab"
+
+up: image pod alice bob mediator start
+
+down: stop
+
+cycle: stop clean up
+
+image:
+	podman build -t $(IMAGE_NAME) .
+
+pod:
+	podman pod create --name $(POD_NAME) \
+		-p 3000:3000 \
+		-p 3001:3001 \
+		-p 3002:3002 \
+		-p 3003:3003 \
+		-p 3004:3004 \
+		-p 3005:3005
+
+alice: | pod image
+	podman create --name alice --pod $(POD_NAME) \
+		$(IMAGE_NAME) start --arg-file configs/alice.yml
+
+bob: | pod image
+	podman create --name bob --pod $(POD_NAME) \
+		$(IMAGE_NAME) start --arg-file configs/bob.yml
+
+mediator: | pod image
+	podman create --name mediator --pod $(POD_NAME) \
+		$(IMAGE_NAME) start --arg-file configs/mediator.yml
+
+logs:
+	podman logs -n -t --tail 20 alice bob mediator
+
+start:
+	podman pod start $(POD_NAME)
+
+stop:
+	podman pod stop $(POD_NAME)
+
+clean:
+	-podman rm alice
+	-podman rm bob
+	-podman rm mediator
+	-podman pod rm $(POD_NAME)
+
+rmi:
+	-podman rmi $(IMAGE_NAME)
