@@ -93,7 +93,8 @@ You should see output for the Alice Agent similar to the following:
 
 ## Connect Toolbox to Mediator
 
-Follow this link to the Indicio Public Mediator: https://indicio-tech.github.io/mediator/
+Follow this link to the Indicio Public Mediator:
+[https://indicio-tech.github.io/mediator/](https://indicio-tech.github.io/mediator/)
 
 ![](images/indicio-public-mediator.png)
 
