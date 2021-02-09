@@ -1,0 +1,10 @@
+version: "3"
+services:
+    alice:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3000:3000"
+            - "3001:3001"
+        network_mode: host
+        command: start --arg-file configs/alice.yml

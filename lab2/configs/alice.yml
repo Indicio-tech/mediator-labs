@@ -1,0 +1,29 @@
+# General
+label: Alice
+endpoint:
+    - http://localhost:3000
+    - ws://localhost:3000
+inbound-transport:
+  - [acapy_plugin_toolbox.http_ws, 0.0.0.0, 3000]
+outbound-transport: http
+no-ledger: true
+
+# Admin
+admin: [0.0.0.0, 3001]
+admin-insecure-mode: true
+
+# Connections
+debug-connections: true
+auto-accept-invites: true
+auto-accept-requests-peer: true
+connections-invite: true
+invite-label: Alice (Admin)
+invite-metadata-json: '{"group": "admin"}'
+
+# Plugins
+plugin:
+    #    - acapy_plugin_toolbox.basicmessage
+    #    - acapy_plugin_toolbox.connections
+    #    - acapy_plugin_toolbox.invitations
+    #    - acapy_plugin_toolbox.routing
+    - acapy_plugin_toolbox

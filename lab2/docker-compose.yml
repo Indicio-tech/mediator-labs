@@ -1,0 +1,14 @@
+version: "3"
+services:
+    ngrok-alice:
+        image: wernight/ngrok
+        command: ngrok http alice:3000 --log stdout
+    alice:
+        build: .
+        image: mediator-lab
+        ports:
+            - "3000:3000"
+            - "3001:3001"
+        environment:
+            NGROK_NAME: ngrok-alice
+        command: start --arg-file configs/alice.yml
